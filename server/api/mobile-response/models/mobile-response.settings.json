@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mobile_responses",
+  "info": {
+    "name": "MobileResponse",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "otp": {
+      "type": "string"
+    }
+  }
+}

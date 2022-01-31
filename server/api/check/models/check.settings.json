@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "checks",
+  "info": {
+    "name": "check"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymentUrl": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    }
+  }
+}
