@@ -26,10 +26,16 @@ const MobileView = () => {
   const [URL, setURL] = useState("");
   const [showURL, setShowURL] = useState(false);
 
-  const submitResponse = async () => {
+  const submitResponse = async (state) => {
     await axios
       .get(`${URI}/carts/${formData.email}/${formData.otp}`)
       .then(async (res) => {
+        console.log(state);
+        await axios
+          .put(`${URI}/carts/${res.data[0]._id}`, { completed: state })
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+
         const prod = res.data[0];
         // CREATE PAYMENT
         const sendData = {
@@ -44,12 +50,12 @@ const MobileView = () => {
           .post(`${URI}/payments`, { data: sendData })
           .then(async (res) => {
             setURL(res.data.paymentURL);
-            handleClickOpenD();
             await axios
               .post(`${URI}/mobile-responses`, formData)
               .then((res) => {
                 setFormData(initialState);
                 handleClick();
+                handleCloseD();
               })
               .catch((err) => console.log(err));
           })
@@ -130,7 +136,7 @@ const MobileView = () => {
               setFormData({ ...formData, otp: e.target.value })
             }
           />
-          <Button fullWidth variant="contained" onClick={submitResponse}>
+          <Button fullWidth variant="contained" onClick={handleClickOpenD}>
             Submit
           </Button>
           <Typography
@@ -156,16 +162,16 @@ const MobileView = () => {
           <DialogActions>
             <Button
               onClick={() => {
-                handleCloseD();
                 setShowURL(false);
+                submitResponse(false);
               }}
             >
               No
             </Button>
             <Button
               onClick={() => {
-                handleCloseD();
                 setShowURL(true);
+                submitResponse(true);
               }}
               autoFocus
             >

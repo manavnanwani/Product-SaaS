@@ -72,6 +72,7 @@ const CustomerList = () => {
                         <TableCell>Product Name</TableCell>
                         <TableCell>Product Description</TableCell>
                         <TableCell>OTP</TableCell>
+                        <TableCell>Order Status</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -91,6 +92,9 @@ const CustomerList = () => {
                           </TableCell>
                           <TableCell>{item.product.Description}</TableCell>
                           <TableCell>{item.OTP}</TableCell>
+                          <TableCell>
+                            {item.completed ? "Completed" : "Not Completed"}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

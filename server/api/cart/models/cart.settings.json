@@ -28,6 +28,10 @@
     },
     "userEmail": {
       "type": "string"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
